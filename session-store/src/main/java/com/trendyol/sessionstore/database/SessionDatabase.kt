@@ -25,7 +25,7 @@ internal abstract class SessionDatabase : RoomDatabase() {
                     SessionDatabase::class.java,
                     "session_db"
                 )
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration(false)
                     .build().also { INSTANCE = it }
             }
         }
