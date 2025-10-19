@@ -1,6 +1,8 @@
 [versions]
 compileSdk = "36"
+core = "1.7.0"
 fragmentKtx = "1.8.9"
+kotlinxCoroutinesTest = "1.10.2"
 minSdk = "21"
 agp = "8.13.0"
 kotlin = "2.1.0"
@@ -11,6 +13,8 @@ espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.9.4"
 activityCompose = "1.11.0"
 composeBom = "2025.10.00"
+mockk = "1.14.6"
+robolectric = "4.16"
 room = "2.8.2"
 ksp = "2.1.0-1.0.29"
 coroutines = "1.10.2"
@@ -18,9 +22,12 @@ lifecycleProcess = "2.9.4"
 hilt = "2.52"
 hiltNavigationCompose = "1.2.0"
 appcompat = "1.7.1"
+truth = "1.4.5"
+turbine = "1.2.1"
 
 [libraries]
 androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-core = { module = "androidx.test:core", version.ref = "core" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -49,6 +56,11 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

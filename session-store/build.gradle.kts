@@ -34,14 +34,11 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
 
     testImplementation(libs.junit)
-    testImplementation("io.mockk:mockk:1.13.9")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
-    testImplementation("org.robolectric:robolectric:4.11.1")
-    testImplementation("app.cash.turbine:turbine:1.0.0")
-    testImplementation("androidx.test:core:1.5.0")
-    testImplementation("androidx.test.ext:junit:1.1.5")
-    testImplementation("com.google.truth:truth:1.1.5")
-
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.turbine)
+    testImplementation(libs.androidx.core)
+    testImplementation(libs.androidx.junit)
+    testImplementation(libs.truth)
 }
