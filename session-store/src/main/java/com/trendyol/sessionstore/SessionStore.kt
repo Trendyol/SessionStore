@@ -57,5 +57,24 @@ public interface SessionStore {
      */
     public suspend fun getEditor(): SessionStoreEditor
 
+    /**
+     * Default singleton instance of [SessionStore].
+     *
+     * This companion object provides a ready-to-use instance that can be accessed as
+     * `SessionStore.Default` or simply `SessionStore` throughout your application.
+     *
+     * Example usage:
+     * ```
+     * class MyApplication : Application() {
+     *     override fun onCreate() {
+     *         super.onCreate()
+     *         SessionStore.install(this, JsonSerializationAdapter())
+     *     }
+     * }
+     *
+     * // Later in your code:
+     * val editor = SessionStore.getEditor()
+     * ```
+     */
     public companion object Default : SessionStore by SessionStoreImpl()
 }
