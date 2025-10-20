@@ -2,7 +2,7 @@
 
 SessionStore is a lightweight Android library that provides session-scoped data storage for your applications. It offers a simple key-value API for storing arbitrary objects that automatically persist across configuration changes and process death, while being intelligently cleaned up when a new user session begins.
 
-## Why SessionStore Exists
+## Why Session Store Exists
 
 Android's Bundle has a strict size limitation of approximately 1MB for saving and restoring instance state. When your application needs to pass large objects between activities or fragments, retain complex state across configuration changes, or persist substantial data during process death, the Bundle quickly becomes insufficient. Exceeding this limit results in `TransactionTooLargeException`, causing crashes or silent data loss.
 
