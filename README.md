@@ -1,12 +1,12 @@
 # Session Store
 
-SessionStore is a lightweight Android library that provides session-scoped data storage for your applications. It offers a simple key-value API for storing arbitrary objects that automatically persist across configuration changes and process death, while being intelligently cleaned up when a new user session begins.
+Session Store is a lightweight Android library that provides session-scoped data storage for your applications. It offers a simple key-value API for storing arbitrary objects that automatically persist across configuration changes and process death, while being intelligently cleaned up when a new user session begins.
 
 ## Why Session Store Exists
 
 Android's Bundle has a strict size limitation of approximately 1MB for saving and restoring instance state. When your application needs to pass large objects between activities or fragments, retain complex state across configuration changes, or persist substantial data during process death, the Bundle quickly becomes insufficient. Exceeding this limit results in `TransactionTooLargeException`, causing crashes or silent data loss.
 
-SessionStore solves this problem by providing an alternative storage mechanism that uses Room database for persistence, eliminating size constraints while maintaining the same lifecycle guarantees you'd expect from saved instance state. The library automatically detects whether your activity is starting fresh, being recreated from a configuration change, or recovering from process death, and manages data cleanup accordingly. When a genuine new session begins—such as a fresh app launch after process termination without saved state—all previous session data is automatically purged, ensuring you don't accumulate stale data over time.
+Session Store solves this problem by providing an alternative storage mechanism that uses Room database for persistence, eliminating size constraints while maintaining the same lifecycle guarantees you'd expect from saved instance state. The library automatically detects whether your activity is starting fresh, being recreated from a configuration change, or recovering from process death, and manages data cleanup accordingly. When a genuine new session begins—such as a fresh app launch after process termination without saved state—all previous session data is automatically purged, ensuring you don't accumulate stale data over time.
 
 ## Quick Start
 
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
 ## Setting Up
 
-Add the SessionStore dependencies to your module's `build.gradle.kts` file.
+Add the Session Store dependencies to your module's `build.gradle.kts` file.
 
 ```kotlin
 dependencies {
@@ -53,7 +53,7 @@ dependencies {
 
 ## How to Use
 
-SessionStore requires initialization in your Application class's `onCreate` method before you can store or retrieve data. The installation process registers activity lifecycle callbacks to detect the launch reason—whether it's a first launch, process death recovery, or configuration change—and initializes the session accordingly.
+Session Store requires initialization in your Application class's `onCreate` method before you can store or retrieve data. The installation process registers activity lifecycle callbacks to detect the launch reason—whether it's a first launch, process death recovery, or configuration change—and initializes the session accordingly.
 
 ### Installing SessionStore
 
@@ -87,7 +87,7 @@ Don't forget to register your Application class in your AndroidManifest.xml:
 
 ### Implementing a Serialization Adapter
 
-SessionStore requires a serialization adapter to convert your objects to and from a storable format. You can choose between JSON-based serialization or binary serialization depending on your needs.
+Session Store requires a serialization adapter to convert your objects to and from a storable format. You can choose between JSON-based serialization or binary serialization depending on your needs.
 
 For JSON serialization using Moshi, create an adapter that implements `JsonSerializationAdapter`:
 
@@ -140,7 +140,7 @@ class ParcelableAdapter : ByteArraySerializationAdapter {
 
 ### Storing and Retrieving Data
 
-Once SessionStore is installed, obtain an editor to perform read and write operations. All operations are suspend functions that execute on background threads, making them safe to call from the main thread without blocking.
+Once Session Store is installed, obtain an editor to perform read and write operations. All operations are suspend functions that execute on background threads, making them safe to call from the main thread without blocking.
 
 ```kotlin
 lifecycleScope.launch {
@@ -162,13 +162,13 @@ lifecycleScope.launch {
 
 ### Session Lifecycle and Data Cleanup
 
-SessionStore maintains a session counter that increments only on genuine fresh app launches—when the app starts without any saved state from a previous process. During configuration changes like screen rotations, or when the system kills your process but later restores it with saved state, the session counter remains unchanged and your data persists.
+Session Store maintains a session counter that increments only on genuine fresh app launches—when the app starts without any saved state from a previous process. During configuration changes like screen rotations, or when the system kills your process but later restores it with saved state, the session counter remains unchanged and your data persists.
 
-When a new session begins, SessionStore automatically deletes all data from previous sessions in a background thread, ensuring you start with a clean slate. This means you never have to worry about manually cleaning up old data or checking whether data is stale. Each session is completely isolated from previous sessions, and you can rely on this behavior to implement features like temporary caches, wizard flows, or multi-step forms that should reset on fresh launches.
+When a new session begins, Session Store automatically deletes all data from previous sessions in a background thread, ensuring you start with a clean slate. This means you never have to worry about manually cleaning up old data or checking whether data is stale. Each session is completely isolated from previous sessions, and you can rely on this behavior to implement features like temporary caches, wizard flows, or multi-step forms that should reset on fresh launches.
 
 ## API Reference
 
-The SessionStore API is designed around simple, coroutine-based interfaces that handle threading and lifecycle management automatically.
+The Session Store API is designed around simple, coroutine-based interfaces that handle threading and lifecycle management automatically.
 
 ### SessionStore Interface
 
