@@ -1,4 +1,4 @@
-# SessionStore
+# Session Store
 
 SessionStore is a lightweight Android library that provides session-scoped data storage for your applications. It offers a simple key-value API for storing arbitrary objects that automatically persist across configuration changes and process death, while being intelligently cleaned up when a new user session begins.
 
