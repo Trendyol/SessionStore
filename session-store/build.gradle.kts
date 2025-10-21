@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     alias(libs.plugins.ksp)
+    alias(libs.plugins.maven.publish)
 }
 
 version = publishedLibs.versions.sessionStore.get()
@@ -22,6 +23,45 @@ kotlin {
 
 kotlin {
     jvmToolchain(17)
+}
+
+mavenPublishing {
+    publishToMavenCentral(automaticRelease = false)
+    pom {
+        name = "Session Store"
+        description = "Android session-scoped data storage with automatic lifecycle management."
+        url = "https://github.com/Trendyol/SessionStore"
+        licenses {
+            license {
+                name = "SessionStore License"
+                url = "https://github.com/Trendyol/SessionStore/blob/main/LICENSE"
+            }
+        }
+        developers {
+            developer {
+                id = "ertugrul"
+                name = "Ertuğrul Karagöz"
+                email = "ertugrulkaragoz12@gmail.com"
+            }
+        }
+        scm {
+            connection = "scm:git:github.com/Trendyol/SessionStore.git"
+            developerConnection = "scm:git:ssh://github.com/Trendyol/SessionStore.git"
+            url = "https://github.com/Trendyol/SessionStore/tree/main"
+        }
+    }
+    val signingKeyId = System
+        .getenv("ORG_GRADLE_PROJECT_signingInMemoryKeyId")
+        .orEmpty()
+    val signingKeyPassword = System
+        .getenv("ORG_GRADLE_PROJECT_signingInMemoryKeyPassword")
+        .orEmpty()
+    val signingKey = System
+        .getenv("ORG_GRADLE_PROJECT_signingInMemoryKey")
+        .orEmpty()
+    if (signingKeyId.isNotEmpty() && signingKey.isNotEmpty() && signingKeyPassword.isNotEmpty()) {
+        signAllPublications()
+    }
 }
 
 dependencies {
