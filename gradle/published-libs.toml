@@ -1,4 +1,4 @@
 # This file contains the both (session store and testing) versions of the artifacts we publish.
 
 [versions]
-sessionStore = "1.0.0"
+sessionStore = "1.0.2"
