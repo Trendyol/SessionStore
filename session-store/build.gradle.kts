@@ -6,6 +6,7 @@ plugins {
 }
 
 version = publishedLibs.versions.sessionStore.get()
+group = "com.trendyol"
 
 android {
     namespace = "com.trendyol.sessionstore"
